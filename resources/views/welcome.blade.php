@@ -415,7 +415,7 @@
     </section>
 
 
-    {{-- <footer class="bg-gray-900">
+    <footer class="bg-gray-900">
         <div class=" w-[1280px] mx-auto grid grid-cols-12 py-16 gap-6 ">
             <div class="col-span-4 space-y-3">
                 <img src="https://oitila.netlify.app/live/assets/img/logo.png" alt="" srcset="">
@@ -491,7 +491,7 @@
                 </ul>
             </div>
         </div>
-    </footer> --}}
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
