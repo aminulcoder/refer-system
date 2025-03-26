@@ -152,20 +152,20 @@ class UserController extends Controller
     }
 
 
-    public function showReferralPage()  {
+    // public function showReferralPage()  {
 
 
 
-        $user = auth()->user();
+    //     $user = auth()->user();
 
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
-    }
+    // if (!$user) {
+    //     return redirect()->route('login')->with('error', 'Please login first.');
+    // }
 
-    $referralLink = route('referral.register', ['ref' => $user->referral_code]);
+    // $referralLink = route('referral.register', ['ref' => $user->referral_code]);
 
-    // return $referralLink;
+    // // return $referralLink;
 
-    return view('referral', compact('referralLink'));
-    }
+    // return view('referral', compact('referralLink'));
+    // }
 }
