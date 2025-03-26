@@ -164,7 +164,7 @@ class UserController extends Controller
 
     $referralLink = route('referral.register', ['ref' => $user->referral_code]);
 
-    return $referralLink;
+    // return $referralLink;
 
     return view('referral', compact('referralLink'));
     }
