@@ -122,6 +122,8 @@ class UserController extends Controller
             'deleted' => $request->deleted,
             'deleted_date' => $request->deleted_date,
             'password' => $request->password,
+
+            // df
             'status' => $request->status,
 
         ];
@@ -129,6 +131,10 @@ class UserController extends Controller
             $file_name = $request->file('photo')->store('photo/user');
             $data['photo'] = $file_name;
         }
+        // if($request->file('photo')){
+        //     $file_name = $request->file('photo')->store('photo/user');
+        //     $data['photo'] = $file_name;
+        // }
 
 
         User::firstwhere('id', $id)->update($data);
