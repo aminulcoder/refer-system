@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="utf-8">
@@ -12,9 +12,15 @@
     <title> @yield('title', '')</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
     @else
         <link rel="stylesheet" href="{{ asset('custom.css') }}">
+
     @endif
+
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     @stack('styles')
 </head>
 
@@ -26,7 +32,9 @@
     @include('layouts.footer')
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     @stack('scripts')
+
 </body>
 
 </html>

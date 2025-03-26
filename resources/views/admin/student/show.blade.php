@@ -42,7 +42,7 @@
             <!-- Address -->
             <div class="flex items-start">
                 <span class="text-gray-700 font-medium w-28">Refered by:</span>
-                <span class="text-gray-800">{{$student->refered_by}}</span>
+                <span class="text-gray-800"> {{ $student->user ? $student->user->fname . ' ' . $student->user->lname : 'No refer' }}</span>
             </div>
         </div>
     </div>

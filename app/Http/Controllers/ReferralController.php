@@ -3,8 +3,10 @@ namespace App\Http\Controllers;
 
 use App\Models\FormSubmission;
 use App\Models\Network;
+use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
@@ -14,7 +16,8 @@ class ReferralController extends Controller
 {
     public function referral()
     {
-        return view('referral.referal');
+        $sliders = Slider::oldest()->get();
+        return view('frontend.pages.affiliatereferal');
     }
 
     public function referralstore(Request $request)
@@ -81,7 +84,7 @@ class ReferralController extends Controller
             'title'              => 'Registered',
         ];
 
-        Mail::send('emails.registerMail', ['data' => $data], function ($message) use ($data) {
+        Mail::send('frontend.pages.emails.email', ['data' => $data], function ($message) use ($data) {
             $message->to($data['email'])->subject($data['title']);
         });
 
@@ -104,7 +107,7 @@ class ReferralController extends Controller
         // }else{
         //     return redirect('/');
         // }
-        return view('referral.stureferral');
+        return view('frontend.pages.referralstudent');
     }
 
     public function referstduntstore(Request $request)
@@ -137,4 +140,28 @@ class ReferralController extends Controller
     ]);
         return redirect()->route('referral.student')->with('success', 'User successfully registered!');
     }
+
+
+    public function getReferralLink()
+    {
+        $user = auth()->user();
+        if ($user) {
+            $referralLink = url('/referral-register?ref=' . $user->referral_code);
+            return response()->json(['referral_link' => $referralLink]);
+        }
+        return response()->json(['error' => 'User not authenticated'], 401);
+
+
+
+//         $user = Auth::user();
+
+//         if (!$user) {
+//             return response()->json(['error' => 'User not authenticated'], 401);
+//         }
+
+//         $referralLink = route('referral.register', ['ref' => $user->referral_code]);
+// return $referralLink;
+    return view('referral', compact('referralLink'));
+    }
+
 }

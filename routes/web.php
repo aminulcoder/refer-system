@@ -2,17 +2,15 @@
 
 use App\Http\Controllers\AffiliatetermsController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
-// Default Route
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/',[HomepageController::class,'homepage'])->name('homepage');
 // Referral Routes
 Route::controller(ReferralController::class)->group(function () {
     Route::get('referral', 'referral')->name('referral.page');

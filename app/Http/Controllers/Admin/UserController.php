@@ -144,4 +144,22 @@ class UserController extends Controller
         User::where('id', $id)->delete();
         return redirect()->route('user.index');
     }
+
+
+    public function showReferralPage()  {
+
+
+
+        $user = auth()->user();
+
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+
+    $referralLink = route('referral.register', ['ref' => $user->referral_code]);
+
+    return $referralLink;
+
+    return view('referral', compact('referralLink'));
+    }
 }

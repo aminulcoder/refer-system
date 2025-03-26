@@ -9,6 +9,6 @@ class AffiliatetermsController extends Controller
     public function affiliate()  {
 
 
-        return view('referral.affiliate');
+        return view('frontend.pages.affiliateterms');
     }
 }
