@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('category',   CategoryController::class);
     Route::resource('user',       UserController::class);
     Route::resource('slider',       SliderController::class);
-    Route::get('/referral', [UserController::class, 'showReferralPage'])->name('referral.page');
+    // Route::get('/referral', [UserController::class, 'showReferralPage'])->name('referral.page');
 
 
     Route::get('student/', [StudentController::class, 'studentlist'])->name('student.list');
