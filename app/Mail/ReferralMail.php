@@ -29,7 +29,7 @@ class ReferralMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Referral Mail',
+            subject: 'Referral Mail  aminul',
         );
     }
 

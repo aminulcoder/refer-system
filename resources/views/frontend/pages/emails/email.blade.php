@@ -10,7 +10,7 @@
 <p>Hi {{$data['fname']}}, Welcome to Referral System </p>
 <p><b>Username:-</b> {{ $data['email']  }}</p>
 <p><b>Password:-</b> {{ $data['password']}}</p>
-
+<p>please  <a href="{{route('login')}}">login</a></p>
 <p>You can add users to your Network by share your <a href="{{ $data['url']}}">Referral Link </a> </p>
 <p>Thank You !</p>
 

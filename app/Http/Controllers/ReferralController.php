@@ -76,13 +76,24 @@ class ReferralController extends Controller
 
         $url = Url::to('/referral-register?ref=' . $referralCode);
         // return    $url ;
+        // $data = [
+        //     'url'                => $url,
+        //     'fname'              => $request->fname,
+        //     'email'              => $request->email,
+        //     'password_reset_url' => Url::to('/password/reset'),
+        //     'title'              => 'Registered',
+        // ];
+
+
         $data = [
             'url'                => $url,
             'fname'              => $request->fname,
             'email'              => $request->email,
+            'password'           => $request->password, // এটি যোগ করুন
             'password_reset_url' => Url::to('/password/reset'),
             'title'              => 'Registered',
         ];
+
 
         Mail::send('frontend.pages.emails.email', ['data' => $data], function ($message) use ($data) {
             $message->to($data['email'])->subject($data['title']);
@@ -141,27 +152,5 @@ class ReferralController extends Controller
         return redirect()->route('referral.student')->with('success', 'User successfully registered!');
     }
 
-
-    public function getReferralLink()
-    {
-        $user = auth()->user();
-        if ($user) {
-            $referralLink = url('/referral-register?ref=' . $user->referral_code);
-            return response()->json(['referral_link' => $referralLink]);
-        }
-        return response()->json(['error' => 'User not authenticated'], 401);
-
-
-
-//         $user = Auth::user();
-
-//         if (!$user) {
-//             return response()->json(['error' => 'User not authenticated'], 401);
-//         }
-
-//         $referralLink = route('referral.register', ['ref' => $user->referral_code]);
-// return $referralLink;
-    return view('referral', compact('referralLink'));
-    }
 
 }
