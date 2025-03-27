@@ -5,7 +5,9 @@
         <x-button.button-plus route="{{ route('slider.create') }}" title="Create" />
     </div>
 @endsection
-
+@php
+     $user = Auth::user();
+@endphp
 
 @section('content')
 
@@ -63,6 +65,7 @@
                                         <td
                                             class="px-6 py-4 text-wrap whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                                             {{ $slider->description }}
+                                            
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
 

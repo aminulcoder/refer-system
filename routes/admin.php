@@ -20,7 +20,10 @@ use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ReferralController;
+use App\Http\Controllers\ReferrallinkController;
+
 // Route::get('/referral', [UserController::class, 'showReferralPage'])->name('referral.page');
+// Route::get('/referral', [ReferralController::class, 'showReferralPage'])->name('referral.page');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('role', RoleController::class);
     Route::resource('admin', AdminController::class);
@@ -30,7 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('category',   CategoryController::class);
     Route::resource('user',       UserController::class);
     Route::resource('slider',       SliderController::class);
-    // Route::get('/referral', [UserController::class, 'showReferralPage'])->name('referral.page');
+    Route::get('/referrallink', [ReferrallinkController::class, 'referrallink'])->name('referral.link');
+
 
 
     Route::get('student/', [StudentController::class, 'studentlist'])->name('student.list');

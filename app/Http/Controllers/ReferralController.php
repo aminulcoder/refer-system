@@ -6,7 +6,6 @@ use App\Models\Network;
 use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
@@ -17,6 +16,7 @@ class ReferralController extends Controller
     public function referral()
     {
         $sliders = Slider::oldest()->get();
+
         return view('frontend.pages.affiliatereferal');
     }
 
@@ -30,7 +30,10 @@ class ReferralController extends Controller
         ]);
 
         $referralCode = Str::random(10);
-        $userData     = null;
+        // $referralLink = Url::to('/register?ref=' . $referralCode);
+        $referralLink = Url::to('/referral-register?ref=' . $referralCode);
+
+        $userData = null;
 
         if ($request->filled('referral_code')) {
             $userData = User::where('referral_code', $request->referral_code)->first();
@@ -49,6 +52,7 @@ class ReferralController extends Controller
                 'zip_code'      => $request->zip_code,
                 'telephone'     => $request->telephone,
                 'referral_code' => $referralCode,
+                'referral_link' => $referralLink,
                 'password'      => Hash::make($request->password),
             ]);
 
@@ -70,11 +74,12 @@ class ReferralController extends Controller
                 'zip_code'      => $request->zip_code,
                 'telephone'     => $request->telephone,
                 'referral_code' => $referralCode,
+                'referral_link' => $referralLink,
                 'password'      => Hash::make($request->password),
             ]);
         }
 
-        $url = Url::to('/referral-register?ref=' . $referralCode);
+        // $url = Url::to('/referral-register?ref=' . $referralCode);
         // return    $url ;
         // $data = [
         //     'url'                => $url,
@@ -84,16 +89,14 @@ class ReferralController extends Controller
         //     'title'              => 'Registered',
         // ];
 
-
         $data = [
-            'url'                => $url,
+            'url'                => $user->referral_link,
             'fname'              => $request->fname,
             'email'              => $request->email,
             'password'           => $request->password, // এটি যোগ করুন
             'password_reset_url' => Url::to('/password/reset'),
             'title'              => 'Registered',
         ];
-
 
         Mail::send('frontend.pages.emails.email', ['data' => $data], function ($message) use ($data) {
             $message->to($data['email'])->subject($data['title']);
@@ -125,32 +128,39 @@ class ReferralController extends Controller
     {
 
         // ফর্মের ইনপুট চেক করা
-    // dd($request->all());
+        // dd($request->all());
 
-    $referralUser = null;
-    if ($request->filled('referral_code')) {
-        $referralCode = trim($request->referral_code); // Trim করে ক্লিন করা
-        $referralUser = User::whereRaw('LOWER(referral_code) = ?', [strtolower($referralCode)])->first();
-    }
+        $referralUser = null;
+        if ($request->filled('referral_code')) {
+            $referralCode = trim($request->referral_code); // Trim করে ক্লিন করা
+            $referralUser = User::whereRaw('LOWER(referral_code) = ?', [strtolower($referralCode)])->first();
+        }
 
-    // যদি রেফারেল ইউজার না পাওয়া যায়
-    if (!$referralUser) {
-        return redirect()->back()->with('error', 'Invalid referral code!');
-    }
+        // যদি রেফারেল ইউজার না পাওয়া যায়
+        if (! $referralUser) {
+            return redirect()->back()->with('error', 'Invalid referral code!');
+        }
 
-    // নতুন ফর্ম সাবমিশন তৈরি করা
-    $user = FormSubmission::create([
-        'user_id'       => $referralUser->id, // রেফারার থাকলে তার ID সংরক্ষণ হবে
-        'fname'         => $request->fname,
-        'lname'         => $request->lname,
-        'email'         => $request->email,
-        'phone'         => $request->phone,
-        'address'       => $request->address,
-        'course'        => $request->course,
-        'referral_code' => $request->referral_code, // রেফারেল কোড স্টোর করা
-    ]);
+        // নতুন ফর্ম সাবমিশন তৈরি করা
+        $user = FormSubmission::create([
+            'user_id'       => $referralUser->id, // রেফারার থাকলে তার ID সংরক্ষণ হবে
+            'fname'         => $request->fname,
+            'lname'         => $request->lname,
+            'email'         => $request->email,
+            'phone'         => $request->phone,
+            'address'       => $request->address,
+            'course'        => $request->course,
+            'referral_code' => $request->referral_code, // রেফারেল কোড স্টোর করা
+        ]);
         return redirect()->route('referral.student')->with('success', 'User successfully registered!');
     }
 
+
+    public function showReferralPage() {
+
+
+
+        return view('admin.referral.referral-link');
+    }
 
 }
