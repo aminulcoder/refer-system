@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="">
 
 <head>
     <meta charset="utf-8">
@@ -27,9 +27,9 @@
 <body class="bg-white ">
 
 
-    @include('layouts.header')
+    @include('frontend.layouts.header')
     @yield('content')
-    @include('layouts.footer')
+    @include('frontend.layouts.footer')
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>

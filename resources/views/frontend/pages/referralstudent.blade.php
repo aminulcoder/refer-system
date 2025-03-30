@@ -14,7 +14,7 @@
     <div class="bg-white shadow-xl rounded p-8 max-w-3xl w-full">
         <!-- Header Section -->
         <div class="text-center bg-indigo-950 mb-6">
-            <img src="https://wiloreducation.co.uk/wp-content/uploads/2025/03/wilor_logo.23678b07-2.png"
+            <img src="{{asset('logo/rrrr.jpg')}}"
                 alt="Wilor Logo" class="mx-auto w-40">
             </div>
             <h1 class="text-2xl font-bold mt-4 text-gray-800">Apply for a UK Course</h1>

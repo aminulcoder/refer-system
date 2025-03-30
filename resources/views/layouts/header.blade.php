@@ -1,4 +1,4 @@
-<div class="bg-[#007bff]">
+{{-- <div class="bg-[#007bff]">
     @php
         use Carbon\Carbon;
         $dateTime = Carbon::parse('2025-02-27 20:57:09')->format('d M Y, h:i:s A');
@@ -17,14 +17,7 @@
                     <p class="">📅 {{ $dateTime }}</p>
                 </div>
             </div>
-            {{--
-            <div class=" space-x-2">
-                <a href="">Login</a>
-                or
-                <a href="" class="bg-white text-blue-500 px-3 py-2 rounded-3xl">Register</a>
 
-
-            </div> --}}
 
 
             @if (Route::has('login'))
@@ -39,11 +32,6 @@
                         <a href="{{ route('login') }}" class="">
                             Log in
                         </a>
-                        {{-- <a href="{{ route('referral.page') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]
-                        ">
-                        Affiliate
-                    </a> --}}
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="bg-white text-blue-500 px-3 py-2 rounded-3xl">
@@ -154,4 +142,4 @@
         <a href="{{ route('referral.page') }}"
             class="bg-gradient-to-r from-blue-500 to-purple-600 text-white  px-3 py-2 rounded-3xl">Join Now</a>
     </nav>
-</div>
+</div> --}}

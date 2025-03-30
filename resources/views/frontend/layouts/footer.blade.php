@@ -1,7 +1,7 @@
 <footer class="bg-gray-900">
     <div class=" w-[1280px] mx-auto grid grid-cols-12 py-16 gap-6 ">
         <div class="col-span-4 space-y-3">
-            <img src="https://oitila.netlify.app/live/assets/img/logo.png" alt="" srcset="">
+            <img src="{{asset('logo/rrrr.jpg')}}" class="2xl:h-16" alt="" srcset="">
             <div class="flex">
 
                 <p class="text-white">Stan Kelly Suites Wenta Business Centre, 1 Electric Avenue, Enfield, United

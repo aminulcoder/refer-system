@@ -2,7 +2,7 @@
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 md:space-x-6 py-12 px-6 border-2 rounded-md shadow-2xl bg-white">
 
         <!-- Register Account -->
-        <div class="flex items-center space-x-4 w-full md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-4 w-full sm:w-1/2 md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
             <img src="https://oitila.netlify.app/live/assets/img/svg/add-user.svg" class="h-16 md:h-20" alt="">
             <div class="space-y-2">
                 <h6 class="text-lg md:text-2xl font-semibold">Register Account</h6>
@@ -11,7 +11,7 @@
         </div>
 
         <!-- Invest Money -->
-        <div class="flex items-center space-x-4 w-full md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-4 w-full sm:w-1/2 md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
             <img src="https://oitila.netlify.app/live/assets/img/svg/coin.svg" class="h-16 md:h-20" alt="">
             <div class="space-y-2">
                 <h6 class="text-lg md:text-2xl font-semibold">Invest Money</h6>
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Get Withdraw -->
-        <div class="flex items-center space-x-4 w-full md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-4 w-full sm:w-1/2 md:w-1/3 hover:scale-105 transition-transform duration-300 ease-in-out">
             <img src="https://oitila.netlify.app/live/assets/img/svg/add-user.svg" class="h-16 md:h-20" alt="">
             <div class="space-y-2">
                 <h6 class="text-lg md:text-2xl font-semibold">Get Withdraw</h6>

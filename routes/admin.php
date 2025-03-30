@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user',       UserController::class);
     Route::resource('slider',       SliderController::class);
     Route::get('/referrallink', [ReferrallinkController::class, 'referrallink'])->name('referral.link');
+    // Route::get('/stusent', [ReferrallinkController::class, 'referrallink'])->name('referral.link');
 
 
 
