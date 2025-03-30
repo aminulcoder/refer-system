@@ -59,7 +59,8 @@
             <li><a href="#" class="hover:text-yellow-300">UK University</a></li>
             <li><a href="#" class="hover:text-yellow-300">Courses</a></li>
         </ul>
-        <a href="{{ route('referral.page') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-3xl">Join Now</a>
+        <a href="{{ route('referral.page') }}" class="bg-gradient-to-r  from-blue-500 to-purple-600 text-white px-3 py-2 rounded-3xl">Join Now</a><p class="pr-3">|</p>
+        <a href="{{ route('login') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-3xl">Login</a>
     </nav>
 
     <!-- Mobile Menu (Drawer) -->
@@ -70,6 +71,7 @@
         <a href="#" class="text-white text-xl">Contact Us</a>
         <a href="#" class="text-white text-xl">UK University</a>
         <a href="#" class="text-white text-xl">Courses</a>
+        <a href="{{ route('referral.page') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-3xl">Join Now</a>
         <a href="{{ route('referral.page') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-3xl">Join Now</a>
     </div>
 </div>
