@@ -1,4 +1,10 @@
-{{-- <div
+{{-- <div class="p-4 bg-white shadow rounded-lg">
+    <h3 class="text-lg font-semibold text-gray-800">{{ $title ?? 'No Title' }}</h3>
+    <p class="text-2xl font-bold text-indigo-600">{{ $data ?? 'N/A' }}</p>
+</div> --}}
+
+
+<div
 class="w-full h-full bg-white shadow-md rounded-lg py-2 px-4 dark:bg-gray-800 border border-gray-200 dark:border-gray-800">
 <div class="flex items-center gap-x-4 mb-2">
     <div
@@ -12,9 +18,4 @@ class="w-full h-full bg-white shadow-md rounded-lg py-2 px-4 dark:bg-gray-800 bo
         <h6 class="font-normal ext-gray-800 dark:text-gray-200">{{$title ?? 'N/A'}}</h6>
     </div>
 </div>
-</div> --}}
-<!-- resources/views/components/dashboard/dashboardcard.blade.php -->
-<div class="p-4 bg-white shadow rounded-lg">
-    <h3 class="text-lg font-semibold text-gray-800">{{ $title }}</h3>
-    <p class="text-2xl font-bold text-indigo-600">{{ $data }}</p>
 </div>

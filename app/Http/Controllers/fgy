@@ -16,7 +16,6 @@ class ReferralController extends Controller
     public function referral()
     {
         $sliders = Slider::oldest()->get();
-
         return view('frontend.pages.affiliatereferal');
     }
 
@@ -25,66 +24,46 @@ class ReferralController extends Controller
         $request->validate([
             'fname'    => 'required',
             'lname'    => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email'    => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:4',
         ]);
 
         $referralCode = Str::random(10);
-        // $referralLink = Url::to('/register?ref=' . $referralCode);
         $referralLink = Url::to('/referral-register?ref=' . $referralCode);
 
         $userData = null;
-
         if ($request->filled('referral_code')) {
-            $userData = User::where('referral_code', $request->referral_code)->first();
+            $userData = User::where('referral_code', trim($request->referral_code))->first();
         }
 
-        if ($userData) {
-            $user = User::create([
-                'fname'         => $request->fname,
-                'lname'         => $request->lname,
-                'email'         => $request->email,
-                'country'       => $request->country,
-                'address'       => $request->address,
-                'address2'      => $request->address2,
-                'city'          => $request->city,
-                'religion'      => $request->religion,
-                'zip_code'      => $request->zip_code,
-                'telephone'     => $request->telephone,
-                'referral_code' => $referralCode,
-                'referral_link' => $referralLink,
-                'password'      => Hash::make($request->password),
-            ]);
+        $user = User::create([
+            'fname'         => $request->fname,
+            'lname'         => $request->lname,
+            'email'         => $request->email,
+            'country'       => $request->country,
+            'address'       => $request->address,
+            'address2'      => $request->address2,
+            'city'          => $request->city,
+            'religion'      => $request->religion,
+            'zip_code'      => $request->zip_code,
+            'telephone'     => $request->telephone,
+            'referral_code' => $referralCode,
+            'referral_link' => $referralLink,
+            'password'      => Hash::make($request->password),
+        ]);
 
+        if ($userData) {
             Network::create([
                 'referral_code'  => $request->referral_code,
                 'user_id'        => $user->id,
                 'parent_user_id' => $userData->id,
             ]);
-        } else {
-            $user = User::create([
-                'fname'         => $request->fname,
-                'lname'         => $request->lname,
-                'email'         => $request->email,
-                'country'       => $request->country,
-                'address'       => $request->address,
-                'address2'      => $request->address2,
-                'city'          => $request->city,
-                'religion'      => $request->religion,
-                'zip_code'      => $request->zip_code,
-                'telephone'     => $request->telephone,
-                'referral_code' => $referralCode,
-                'referral_link' => $referralLink,
-                'password'      => Hash::make($request->password),
-            ]);
         }
-
 
         $data = [
             'url'                => $user->referral_link,
             'fname'              => $request->fname,
             'email'              => $request->email,
-            'password'           => $request->password,
             'password_reset_url' => Url::to('/password/reset'),
             'title'              => 'Registered',
         ];
@@ -98,12 +77,20 @@ class ReferralController extends Controller
 
     public function LoadReferralRegister()
     {
-
         return view('frontend.pages.referralstudent');
     }
 
     public function referstduntstore(Request $request)
     {
+        $request->validate([
+            'fname'         => 'required',
+            'lname'         => 'required',
+            'email'         => 'required|email|unique:form_submissions,email',
+            'phone'         => 'required',
+            'address'       => 'required',
+            'course'        => 'required',
+            'referral_code' => 'nullable|string',
+        ]);
 
         $referralUser = null;
         if ($request->filled('referral_code')) {
@@ -111,16 +98,11 @@ class ReferralController extends Controller
             $referralUser = User::whereRaw('LOWER(referral_code) = ?', [strtolower($referralCode)])->first();
         }
 
-
         if (! $referralUser) {
             return redirect()->back()->with('error', 'Invalid referral code!');
         }
-        $request->validate([
-            'email' => 'required|email|unique:users,email',
-        ]);
 
-
-        $user = FormSubmission::create([
+        FormSubmission::create([
             'user_id'       => $referralUser->id,
             'fname'         => $request->fname,
             'lname'         => $request->lname,
@@ -130,15 +112,12 @@ class ReferralController extends Controller
             'course'        => $request->course,
             'referral_code' => $request->referral_code,
         ]);
-        return redirect()->back()->with('message', 'Student successfully register');
+
+        return redirect()->route('referral.student')->with('message', 'User successfully registered!');
     }
 
-
-    public function showReferralPage() {
-
-
-
+    public function showReferralPage()
+    {
         return view('admin.referral.referral-link');
     }
-
 }

@@ -1,7 +1,6 @@
-
 @php
-     $studentsCount = \App\Models\FormSubmission::count();
-     $user = \App\Models\User::count();
+    //  $studentsCount = \App\Models\FormSubmission::count();
+    //  $user = \App\Models\User::count();
 @endphp
 @extends('admin.layouts.app')
 @section('breadcrumb')
@@ -12,11 +11,12 @@
         <a href="#">
             <x-dashboard.dahsbordcard title="Student" :data="$studentsCount" />
         </a>
-        <a href="#">
-            <x-dashboard.dahsbordcard title="Affiliater " :data="$user" />
-        </a>
-        <a href="#">
-            <x-dashboard.dahsbordcard title="Reviews" data="123" />
-        </a>
+        @if (auth()->user() && auth()->user()->role === 'admin')
+            <a href="#">
+                <x-dashboard.dashboardcard title="Affiliater " :data="$user" />
+            </a>
+        @endif
+
+
     </div>
 @endsection

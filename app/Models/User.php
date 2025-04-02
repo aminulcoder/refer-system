@@ -65,4 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail
     //         $user->notify(new VerifyEmailNotification());
     //     });
     // }
+
+    // In User model (App\Models\User)
+public function formSubmissions()
+{
+    return $this->hasMany(FormSubmission::class);
+}
+
 }

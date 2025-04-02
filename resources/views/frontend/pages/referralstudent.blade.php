@@ -8,17 +8,18 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white shadow-xl rounded p-8 max-w-3xl w-full">
         <!-- Header Section -->
         <div class="text-center bg-indigo-950 mb-6">
-            <img src="{{asset('logo/rrrr.jpg')}}"
-                alt="Wilor Logo" class="mx-auto w-40">
-            </div>
-            <h1 class="text-2xl font-bold mt-4 text-gray-800">Apply for a UK Course</h1>
-            <p class="text-gray-600">Get funding for your studies (if eligible).</p>
+            <img src="{{ asset('logo/rrrr.jpg') }}" alt="Wilor Logo" class="mx-auto w-40">
+        </div>
+        <h1 class="text-2xl font-bold mt-4 text-gray-800">Apply for a UK Course</h1>
+        <p class="text-gray-600">Get funding for your studies (if eligible).</p>
 
         <!-- Benefits Section -->
         <ul class="bg-indigo-50 p-4 rounded-lg text-sm text-gray-700 mb-6">
@@ -33,31 +34,42 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">First Name</label>
-                    <input type="text" name="fname" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <input type="text" name="fname"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input type="text" name="lname" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                    <input type="text" name="lname"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        required>
                 </div>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                <input type="email" name="email"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    required>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Phone</label>
-                <input type="text" name="phone" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                <input type="text" name="phone"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    required>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Address</label>
-                <input type="text" name="address" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                <input type="text" name="address"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    required>
             </div>
             <input type="hidden" name="referral_code" value="{{ request('ref') }}">
 
             <!-- Course Selection -->
             <div>
                 <label for="course" class="block text-sm font-medium text-gray-700">Select Your Course</label>
-                <select id="course" name="course" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <select id="course" name="course"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     <option>Select a course</option>
                     <option>BA (Hons) Global Business Management</option>
                     <option>BSC (Hons) Health and Social Care</option>
@@ -79,11 +91,30 @@
 
             <!-- Submit Button -->
             <div class="text-start">
-                <button type="submit" class=" bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition">
+                <button type="submit"
+                    class=" bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition">
                     Submit Application
                 </button>
             </div>
         </form>
+        {{-- {{ dd(session('message')) }} --}}
+
     </div>
+    {{-- {{ dd(session('message')) }} --}}
+
+    <!-- Success Message Script -->
+    @if (session('message'))
+    <script>
+        Swal.fire({
+            title: "Generated successfully",
+            text: "Congratulations, check your email for the link",
+            icon: "success"
+        }).then(() => {
+            window.location.href = "{{ route('homepage') }}"; // সফল হলে হোমপেজে পাঠানো হবে
+        });
+    </script>
+    @endif
+
 </body>
+
 </html>
