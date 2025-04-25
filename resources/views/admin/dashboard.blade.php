@@ -9,13 +9,13 @@
 @section('content')
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-2 md:gap-6">
         <a href="#">
-            <x-dashboard.dahsbordcard title="Student" :data="$studentsCount" />
+            {{-- <x-dashboard.dahsbordcard title="Student" :data="$studentsCount" /> --}}
         </a>
-        @if (auth()->user() && auth()->user()->role === 'admin')
+        {{-- @if (auth()->user() && auth()->user()->role === 'admin')
             <a href="#">
                 <x-dashboard.dashboardcard title="Affiliater " :data="$user" />
             </a>
-        @endif
+        @endif --}}
 
 
     </div>
