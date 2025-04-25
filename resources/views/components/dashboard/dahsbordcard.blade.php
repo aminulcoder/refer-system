@@ -14,7 +14,7 @@ class="w-full h-full bg-white shadow-md rounded-lg py-2 px-4 dark:bg-gray-800 bo
 </div>
 </div> --}}
 <!-- resources/views/components/dashboard/dashboardcard.blade.php -->
-<div class="p-4 bg-white shadow rounded-lg">
+{{-- <div class="p-4 bg-white shadow rounded-lg">
     <h3 class="text-lg font-semibold text-gray-800">{{ $title }}</h3>
     <p class="text-2xl font-bold text-indigo-600">{{ $data }}</p>
-</div>
+</div> --}}
